@@ -1,0 +1,8 @@
+node_modules
+.next
+out
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+design-canvas/*.html
+!design-canvas/*.dc.html

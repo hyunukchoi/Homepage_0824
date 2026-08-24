@@ -1,0 +1,288 @@
+@import "tailwindcss";
+
+/* next-themes 가 <html> 에 붙이는 .dark 클래스를 Tailwind v4 다크 변형과 연결 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ────────────────────────────────────────────────
+   COLOR TOKENS — "밝은 유리 공간"
+   따뜻한 오프화이트 공간 + 반투명 유리 표면 + 프리즘 액센트
+   ──────────────────────────────────────────────── */
+:root {
+  --bg: #f2f2ee;
+  --bg-deep: #ebece6;
+  --fg: #14150f;
+  --fg-muted: #45463c;
+  --fg-subtle: #78796d;
+  --fg-faint: #9a9b8f;
+
+  --line: rgba(20, 21, 15, 0.1);
+  --line-mid: rgba(20, 21, 15, 0.16);
+  --line-strong: rgba(20, 21, 15, 0.22);
+
+  --glass: rgba(255, 255, 255, 0.66);
+  --glass-strong: rgba(255, 255, 255, 0.78);
+  --glass-soft: rgba(255, 255, 255, 0.42);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  --glass-shadow: 0 22px 48px -32px rgba(20, 40, 50, 0.45);
+  --glass-shadow-lg: 0 32px 72px -34px rgba(20, 40, 50, 0.45);
+
+  /* 프리즘 액센트 — rgb 채널로 두고 알파를 자유롭게 씁니다 */
+  --cool: 88, 186, 200;
+  --warm: 216, 166, 118;
+  --violet: 150, 140, 220;
+
+  --link: #1a6b74;
+  --link-hover: #0e4a51;
+  --status: #1a8f6a;
+  --flag: #8c6a3a;
+
+  --grid: rgba(20, 21, 15, 0.032);
+  --ring: 26, 107, 116;
+
+  --chip: rgba(20, 21, 15, 0.06);
+  --invert-bg: #14150f;
+  --invert-fg: #f6f6f2;
+}
+
+.dark {
+  --bg: #101211;
+  --bg-deep: #0a0c0b;
+  --fg: #edefe9;
+  --fg-muted: #a7a99e;
+  --fg-subtle: #7c7e74;
+  --fg-faint: #5d5f57;
+
+  --line: rgba(237, 239, 233, 0.12);
+  --line-mid: rgba(237, 239, 233, 0.18);
+  --line-strong: rgba(237, 239, 233, 0.28);
+
+  --glass: rgba(255, 255, 255, 0.055);
+  --glass-strong: rgba(255, 255, 255, 0.09);
+  --glass-soft: rgba(255, 255, 255, 0.035);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --glass-shadow: 0 24px 56px -30px rgba(0, 0, 0, 0.8);
+  --glass-shadow-lg: 0 36px 80px -32px rgba(0, 0, 0, 0.85);
+
+  --cool: 122, 205, 218;
+  --warm: 224, 178, 128;
+  --violet: 168, 158, 235;
+
+  --link: #7fd3dd;
+  --link-hover: #a9e4ea;
+  --status: #45c295;
+  --flag: #d2a464;
+
+  --grid: rgba(237, 239, 233, 0.045);
+  --ring: 127, 211, 221;
+
+  --chip: rgba(237, 239, 233, 0.08);
+  --invert-bg: #edefe9;
+  --invert-fg: #101211;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-deep: var(--bg-deep);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-fg-faint: var(--fg-faint);
+  --color-line: var(--line);
+  --color-line-mid: var(--line-mid);
+  --color-line-strong: var(--line-strong);
+  --color-link: var(--link);
+  --color-status: var(--status);
+  --color-flag: var(--flag);
+  --color-chip: var(--chip);
+  --color-invert-bg: var(--invert-bg);
+  --color-invert-fg: var(--invert-fg);
+
+  --font-sans: var(--font-plex-kr), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo,
+    monospace;
+}
+
+/* ────────────────────────────────────────────────
+   BASE
+   ──────────────────────────────────────────────── */
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  ::selection {
+    background-color: rgb(var(--cool) / 0.34);
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--ring));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 500;
+    text-wrap: balance;
+    word-break: keep-all;
+    letter-spacing: -0.022em;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+    word-break: keep-all;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+/* ────────────────────────────────────────────────
+   COMPONENT PRIMITIVES
+   ──────────────────────────────────────────────── */
+@layer components {
+  /* 영문 라벨 · 수치 — 모노 + 넓은 자간 */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    color: var(--fg-subtle);
+    text-transform: uppercase;
+  }
+
+  .label-sm {
+    font-family: var(--font-mono);
+    font-size: 0.5938rem;
+    letter-spacing: 0.18em;
+    color: var(--fg-subtle);
+    text-transform: uppercase;
+  }
+
+  /* 유리 표면 */
+  .glass {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(14px) saturate(1.1);
+    -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  }
+
+  .glass-strong {
+    background: var(--glass-strong);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow-lg);
+    backdrop-filter: blur(18px) saturate(1.15);
+    -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  }
+
+  .glass-soft {
+    background: var(--glass-soft);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* 배경 계측 그리드 */
+  .grid-field {
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3125rem 0.5625rem;
+    border-radius: 2px;
+    background: var(--chip);
+    font-family: var(--font-mono);
+    font-size: 0.5938rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    white-space: nowrap;
+  }
+
+  .shell {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 3.4vw, 3rem);
+  }
+}
+
+/* ────────────────────────────────────────────────
+   MOTION
+   ──────────────────────────────────────────────── */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal.is-in {
+  animation: reveal-up 0.72s cubic-bezier(0.22, 0.68, 0.24, 1) forwards;
+}
+
+.marquee-track {
+  animation: marquee 42s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal.is-in {
+    opacity: 1;
+    animation: none;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
